@@ -1,3 +1,4 @@
+<!-- index.html completo atualizado -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,7 +12,7 @@
         <img src="logo.png" alt="Anhanguera Logo">
         <h1>Calculadora de Mensalidade</h1>
     </header>
-    
+
     <main>
         <form id="calcForm">
             <label for="duracao">Duração do Curso:</label>
@@ -25,35 +26,54 @@
                 <option value="48">4 anos (8 semestres)</option>
                 <option value="60">5 anos (10 semestres)</option>
             </select>
-            
-            <label for="mensalidade">Bolsa Incentivo (R$):</label>
+
+	<label for="mensalidade">Bolsa Incentivo (R$):</label>
             <input type="number" id="mensalidade" required min="0" placeholder="Escreva somente o valor em R$">
-            
+
+            <div style="display: grid; grid-template-columns: 20% 73%; align-items: center; gap: 10px;">
+		<div>
+                    <label for="calcularPrimeiro">Calcular?</label>
+                    <select id="calcularPrimeiro">
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="bolsaPrimeiro">Bolsa 1º Semestre (%):</label>
+                    <input type="number" id="bolsaPrimeiro" min="0" step="0.01" placeholder="Escreva o valor em %">
+                </div>
+            </div>
+
             <label for="desconto">Desconto Adicional:</label>
             <select id="desconto">
                 <option value="0">Sem desconto</option>
                 <option value="10">10%</option>
+                <option value="15">15%</option>
                 <option value="20">20%</option>
                 <option value="30">30%</option>
             </select>
-            
+
             <label for="pagueFacil">Selecione o Pague Fácil:</label>
             <select id="pagueFacil">
-                <option value="1">Pague Fácil 1 - Diluir apenas a 1ª mensalidade</option>
-                <option value="2">Pague Fácil 2 - Diluir 1ª e 2ª mensalidades</option>
-                <option value="3">Pague Fácil 3 - Diluir 1ª, 2ª e 3ª mensalidades</option>
-                <option value="4">Pague Fácil 4 - Diluir 1ª, 2ª, 3ª e 4ª mensalidades</option>
+                <option value="1">Pague Fácil - 1 mensalidade</option>
+                <option value="2">Pague Fácil - 2 mensalidades</option>
+                <option value="3">Pague Fácil - 3 mensalidades</option>
+                <option value="4">Pague Fácil - 4 mensalidades</option>
+                <option value="5">Pague Fácil - 5 mensalidades</option>
             </select>
-            
+
             <button type="button" onclick="calcularMensalidade()">Calcular</button>
         </form>
-        
+
         <div id="resultado"></div>
     </main>
+
     <footer>
-<div id="creditos"> <p> © Copyright 2025 Calculadora de Parcelamento Anhanguera. Todos os direitos reservados. Desenvolvido por Thiago Berti dos Santos </p>
+        <div id="creditos">
+            <p>© Copyright 2025 Calculadora de Parcelamento Anhanguera. Todos os direitos reservados. Desenvolvido por <a href="https://github.com/thiberti">Thiago Berti</a></p>
+        </div>
     </footer>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
