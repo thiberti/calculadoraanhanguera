@@ -1,3 +1,8 @@
+/* Animações e transições globais */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #ff6600, #ff3300);
@@ -5,7 +10,15 @@ body {
     text-align: center;
     padding: 20px;
     position: relative;
+    min-height: 100vh;
+    animation: fadeIn 1s ease-in-out;
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 body::before {
     content: "";
     position: absolute;
@@ -18,26 +31,61 @@ body::before {
     pointer-events: none;
     z-index: -1;
 }
+
+/* Header com animação de entrada */
 header {
     background: rgba(255, 255, 255, 0.2);
     padding: 20px;
     border-radius: 15px;
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.8s ease-out;
+    transition: transform 0.3s ease;
 }
+
+header:hover {
+    transform: translateY(-5px);
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
 header img {
     width: 180px;
     margin-bottom: 10px;
+    transition: transform 0.3s ease;
 }
+
+header img:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+/* Main container com animação */
 main {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     color: #333;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     max-width: 450px;
     margin: 20px auto;
+    animation: slideUp 0.8s ease-out 0.2s both;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+main:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Inputs e selects com animações */
 input, select, button {
     display: block;
     width: 100%;
@@ -47,32 +95,156 @@ input, select, button {
     border: none;
     border-radius: 10px;
     outline: none;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease-out both;
 }
+
+input:nth-child(1) { animation-delay: 0.1s; }
+input:nth-child(2) { animation-delay: 0.2s; }
+input:nth-child(3) { animation-delay: 0.3s; }
+select:nth-child(1) { animation-delay: 0.1s; }
+select:nth-child(2) { animation-delay: 0.2s; }
+select:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
 input, select {
     background: #fff;
     color: #333;
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
 }
+
+input:focus, select:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+    border-color: #ff6600;
+}
+
+input:hover, select:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Botão com animações avançadas */
 button {
-    background: #ff6600;
+    background: linear-gradient(45deg, #ff6600, #ff3300);
     color: white;
     font-weight: bold;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
 }
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transition: all 0.6s ease;
+    transform: translate(-50%, -50%);
+}
+
+button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
 button:hover {
-    background: #e65c00;
-    transform: scale(1.05);
+    background: linear-gradient(45deg, #e65c00, #cc2900);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 102, 0, 0.4);
 }
+
+button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.3);
+}
+
+/* Resultado com animações */
 #resultado {
+    display: none;
     margin-top: 20px;
-    padding: 15px;
-    background: #fff;
+    padding: 20px;
+    background: linear-gradient(135deg, #fafafa, #f0f0f0);
     color: #333;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #ff6600;
+    animation: resultSlideIn 0.5s ease-out;
 }
+
+@keyframes resultSlideIn {
+    from { 
+        opacity: 0; 
+        transform: translateX(-30px); 
+        max-height: 0;
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0);
+        max-height: 500px;
+    }
+}
+
+#resultado p {
+    margin: 10px 0;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    animation: fadeInResult 0.6s ease-out both;
+}
+
+#resultado p:nth-child(1) { animation-delay: 0.1s; }
+#resultado p:nth-child(2) { animation-delay: 0.2s; }
+#resultado p:nth-child(3) { animation-delay: 0.3s; }
+#resultado p:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInResult {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#resultado p:hover {
+    background: rgba(255, 102, 0, 0.1);
+    transform: translateX(5px);
+}
+
+#resultado strong {
+    color: #ff6600;
+    font-size: 1.1em;
+}
+
+/* Labels com animação */
+label {
+    display: block;
+    margin: 15px 0 5px 0;
+    font-weight: bold;
+    color: #555;
+    transition: color 0.3s ease;
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+label:hover {
+    color: #ff6600;
+}
+
+/* Grid responsivo com animação */
+div[style*="grid"] {
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
 /* Remove setas no Chrome, Safari, Edge, Opera */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -84,12 +256,107 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
-#resultado {
-    display: none; /* esconde por padrão */
-    margin-top: 20px;
-    padding: 20px;
-    background: #fafafa;
-    color: #333;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+/* Footer com animação */
+footer {
+    margin-top: 40px;
+    animation: fadeIn 1s ease-in-out 0.5s both;
+}
+
+#creditos {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+#creditos:hover {
+    transform: translateY(-2px);
+}
+
+#creditos a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#creditos a:hover {
+    color: #ffcc99;
+    text-decoration: underline;
+}
+
+/* Animação de pulse para elementos importantes */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Efeito de loading no botão */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Responsividade com animações */
+@media (max-width: 600px) {
+    main {
+        margin: 10px;
+        padding: 20px;
+        animation: slideUp 0.8s ease-out 0.2s both;
+    }
+    
+    header {
+        animation: slideDown 0.8s ease-out;
+    }
+}
+
+/* Efeitos de micro-interações */
+input:valid {
+    border-color: #4CAF50;
+}
+
+input:invalid {
+    border-color: #f44336;
+}
+
+/* Animação de erro */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.error {
+    animation: shake 0.5s ease-in-out;
+    border-color: #f44336 !important;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
 }
