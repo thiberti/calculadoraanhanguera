@@ -283,14 +283,6 @@ function animateNumber(element, finalValue, duration = 1000) {
     }, 16);
 }
 
-// Adiciona efeito de parallax suave no scroll
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const rate = scrolled * -0.5;
-    
-    document.body.style.transform = `translateY(${rate}px)`;
-});
-
 // Adiciona efeito de hover 3D nos cards
 document.addEventListener('mousemove', function(e) {
     const main = document.querySelector('main');
